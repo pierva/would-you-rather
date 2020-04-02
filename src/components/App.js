@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
 
 
 class App extends Component {
 
   componentDidMount() {
-    // initialize the data here
+    this.props.dispatch(handleInitialData())
   }
 
   render() {
@@ -25,4 +26,4 @@ function mapStateToProps() {
   return {}
 }
 
-export default App
+export default connect(mapStateToProps)(App)
