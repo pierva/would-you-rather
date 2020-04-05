@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import LoadingBar from 'react-redux-loading'
+import Question from '../components/Question'
 
 
 class App extends Component {
@@ -12,7 +14,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        Would you rather
+        <LoadingBar style={{ backgroundColor: '#0909b1', height: '5px' }}/>
+        <Question id='8xf0y6ziyjabvozdd253nd'/>
       </div>
     )
   }
