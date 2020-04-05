@@ -7,9 +7,7 @@ class Question extends Component {
 
   render() {
     // this is coming from mapStateToProps
-    const { question } = this.props
-    console.log(question);
-    
+    const { question } = this.props    
     if (question === null) {
       return (
         <p>Question not found</p>
@@ -39,7 +37,7 @@ function mapStateToProps({users, questions}, {id}) {
 
   return {
     question: question 
-      ? formatQuestion(question, users[question.author], 'sarahedo') 
+      ? formatQuestion(question, users[question.author], id) 
       : null
   }
 }

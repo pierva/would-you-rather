@@ -11,7 +11,8 @@ class Login extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     const { userId } = this.state
-    dispatch(setAuthedUser(userId))
+    userId === '' ? alert('Invalid user')
+      : dispatch(setAuthedUser(userId))
 
     // todo: after login redirect to home page
   }
@@ -19,7 +20,7 @@ class Login extends Component {
   handleChange = (e) => {
     const userId = e.target.value
     this.setState(() => ({
-      userId
+      userId: userId === 'none' ? '' : userId
     }))
   }
 
@@ -30,6 +31,7 @@ class Login extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <select onChange={this.handleChange}>
+            <option key='none' value='none'>Select</option>
             {users.map((user) => (
               <option value={user.id} key={user.id}>{user.name}</option>
             ))}
