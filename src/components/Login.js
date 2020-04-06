@@ -1,32 +1,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
-    userId: ''
+    userId: '',
+    redirectHome: false
   }
   
   handleSubmit = (e) => {
     e.preventDefault()
     const { dispatch } = this.props
     const { userId } = this.state
-    userId === '' ? alert('Invalid user')
-      : dispatch(setAuthedUser(userId))
+    if(userId === ''){
+      return alert('Invalid user')
+    }
+    dispatch(setAuthedUser(userId))
 
-    // todo: after login redirect to home page
+    this.setState(() => ({
+      redirectHome: true
+    }))
   }
 
   handleChange = (e) => {
     const userId = e.target.value
     this.setState(() => ({
-      userId: userId === 'none' ? '' : userId
+      userId: userId === 'none' ? '' : userId,
+      redirectHome: false
     }))
   }
 
   render() {
     const { users } = this.props
-
+    if (this.state.redirectHome) {
+      return <Redirect to='/' />
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

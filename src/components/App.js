@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import { logoutUser } from '../actions/authedUser'
 import LoadingBar from 'react-redux-loading'
-import Question from '../components/Question'
 import Login from '../components/Login'
 import Nav from '../components/Nav'
 import Dashboard from '../components/Dashboard'
@@ -27,10 +26,21 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar style={{ backgroundColor: '#0909b1', height: '5px' }} />
-          {!this.props.authedUser
-            ? <Login />
-            : <Nav 
+          <Nav 
               authedUser={this.props.username} handleLogout={this.handleLogout}/>
+          {this.props.loading === true
+            ? 
+            <div>
+              <Route path='/' exact component={Dashboard} />
+              <Route path='/login' exact component={Login} />
+              {/* <Route path='/leaderboard' exact component={Login} /> */}
+            </div>
+            :            
+            <div>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/login' exact component={Login} />
+                {/* <Route path='/new' exact component={NewQuestion} /> */}
+             </div>
           }
         </Fragment>
       </Router>
