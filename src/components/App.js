@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import { logoutUser } from '../actions/authedUser'
 import LoadingBar from 'react-redux-loading'
 import Question from '../components/Question'
 import Login from '../components/Login'
@@ -17,7 +18,11 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
 
-  render() {   
+  handleLogout = () => {
+    this.props.dispatch(logoutUser())
+  }
+
+  render() { 
     return (
       <Router>
         <Fragment>
@@ -25,7 +30,7 @@ class App extends Component {
           {!this.props.authedUser
             ? <Login />
             : <Nav 
-              authedUser={this.props.username} />
+              authedUser={this.props.username} handleLogout={this.handleLogout}/>
           }
         </Fragment>
       </Router>

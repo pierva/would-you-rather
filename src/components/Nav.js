@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 
 export default function Nav(props) {
   return (
@@ -21,7 +21,7 @@ export default function Nav(props) {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/logout'>
+          <NavLink to='/' exact onClick={props.handleLogout}>
             Logged as {props.authedUser} | LOGOUT
           </NavLink>
         </li>
