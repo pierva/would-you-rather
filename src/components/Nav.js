@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function Nav(props) {
+export default function Nav(props) {  
   const authLinks = [
     {
       path: '/',
@@ -19,8 +19,14 @@ export default function Nav(props) {
       options: {}
     },
     {
+      path: '#',
+      text: `Welcome, ${props.authedUser}`,
+      options: {},
+      avatar: props.avatar
+    },
+    {
       path: '/',
-      text: `Logged as ${props.authedUser} | LOGOUT`,
+      text: 'LOGOUT',
       options: 
         {
           clickHandler: props.handleLogout
@@ -57,6 +63,7 @@ export default function Nav(props) {
             >
               {link.text}
             </NavLink>
+            {link.avatar ? <img src={link.avatar} /> : ''}
           </li>
           ))
         : 

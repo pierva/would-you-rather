@@ -27,7 +27,10 @@ class App extends Component {
         <Fragment>
           <LoadingBar style={{ backgroundColor: '#0909b1', height: '5px' }} />
           <Nav 
-              authedUser={this.props.username} handleLogout={this.handleLogout}/>
+              authedUser={this.props.username} 
+              handleLogout={this.handleLogout}
+              avatar={this.props.avatar}
+          />
           {this.props.loading === true
             ? 
             <div>
@@ -56,7 +59,8 @@ function mapStateToProps({ authedUser, users }) {
     // if authedUser is null, loading will be true
     loading: authedUser === null,
     authedUser,
-    username: authedUser ? users[authedUser].name : null
+    username: authedUser ? users[authedUser].name : null,
+    avatar: authedUser ? users[authedUser].avatarURL : null
   }
 }
 
