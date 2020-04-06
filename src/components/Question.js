@@ -17,7 +17,7 @@ class Question extends Component {
     // If question exist, we can get the information we need 
     const {
       id, name, avatar, optionOne, optionTwo, hasAnswered
-    } = question 
+    } = question     
     return (
       <div>
         <p>id: {id}</p>
@@ -25,19 +25,19 @@ class Question extends Component {
         <p>avatar: {avatar}</p>
         <p>option one: {optionOne.text}</p>
         <p>option two: {optionTwo.text}</p>
-        <p>Has answered: {hasAnswered.value}</p>
-        <p>Has option: {hasAnswered.option}</p>
+        <p>Has answered: {hasAnswered.value === true ? 'yes' : "no"}</p>
+        <p>Answered option: {hasAnswered.option}</p>
       </div>
     )
   }
 }
 
-function mapStateToProps({users, questions}, {id}) {
+function mapStateToProps({users, questions, authedUser}, {id}) {
   const question = questions[id]
 
   return {
     question: question 
-      ? formatQuestion(question, users[question.author], id) 
+      ? formatQuestion(question, users[question.author], authedUser) 
       : null
   }
 }
