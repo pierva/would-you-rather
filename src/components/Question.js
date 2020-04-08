@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import QuestionPoll from './QuestionPoll'
 
 class Question extends Component {
+  state = {
+    openPoll: false
+  }
 
+  togglePoll = () => {
+    this.setState((prevState) => ({
+      openPoll: !prevState.openPoll
+    }))
+  }
+  
 
   render() {
     // this is coming from mapStateToProps
@@ -16,17 +26,26 @@ class Question extends Component {
 
     // If question exist, we can get the information we need 
     const {
-      id, name, avatar, optionOne, optionTwo, hasAnswered
-    } = question     
+      name, avatar, hasAnswered
+    } = question   
+          
     return (
       <div>
-        <p>id: {id}</p>
-        <p>author: {name}</p>
-        <p>avatar: {avatar}</p>
-        <p>option one: {optionOne.text}</p>
-        <p>option two: {optionTwo.text}</p>
-        <p>Has answered: {hasAnswered.value === true ? 'yes' : "no"}</p>
-        <p>Answered option: {hasAnswered.option}</p>
+        {this.state.openPoll 
+        ? <div>
+          < QuestionPoll 
+            authedUser={this.props.authedUser} 
+            question={this.props.question}
+            />
+          <button onClick={this.togglePoll}>Close Poll</button>
+          </div>
+        :
+        <div>
+          <p>author: {name}</p>
+          <p>avatar: {avatar}</p>
+          <button onClick={this.togglePoll}>View Poll</button>
+        </div>
+        }   
       </div>
     )
   }
@@ -38,7 +57,8 @@ function mapStateToProps({users, questions, authedUser}, {id}) {
   return {
     question: question 
       ? formatQuestion(question, users[question.author], authedUser) 
-      : null
+      : null,
+    authedUser
   }
 }
 
