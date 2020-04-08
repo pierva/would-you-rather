@@ -41,11 +41,6 @@ export default function Nav(props) {
       options: {}
     },
     {
-      path: '/leaderboard',
-      text: 'Leaderboard',
-      options: {}
-    },
-    {
       path: '/login',
       text: 'LOGIN',
       options: {}
@@ -63,7 +58,7 @@ export default function Nav(props) {
             >
               {link.text}
             </NavLink>
-            {link.avatar ? <img src={link.avatar} /> : ''}
+            {link.avatar ? <img src={link.avatar} alt="avatar"/> : ''}
           </li>
           ))
         : 
