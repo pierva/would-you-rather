@@ -26,7 +26,7 @@ class Question extends Component {
 
     // If question exist, we can get the information we need 
     const {
-      name, avatar, hasAnswered
+      name, avatar
     } = question   
           
     return (
