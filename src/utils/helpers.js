@@ -9,7 +9,10 @@ export function formatQuestion(question, author, authedUser) {
   const { id, optionOne, optionTwo, timestamp, } = question
   const { name, avatarURL } = author 
 
-  let hasAnswered = {}
+  let hasAnswered = {
+    value: false,
+    option: null
+  }
   if (optionOne.votes.includes(authedUser)) {
     hasAnswered.value = true
     hasAnswered.option = 'optionOne'

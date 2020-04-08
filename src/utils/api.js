@@ -17,5 +17,8 @@ export async function getInitialData () {
     console.error(e);
     return {}
   }
+}
 
+export function saveQuestionAnswer (authedUser, qid, answer) {
+  return _saveQuestionAnswer(authedUser, qid, answer)
 }
