@@ -36,13 +36,15 @@ class App extends Component {
             <div>
               <Route path='/' exact component={Dashboard} />
               <Route path='/login' exact component={Login} />
-              {/* <Route path='/leaderboard' exact component={Login} /> */}
             </div>
             :            
             <div>
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/login' exact component={Login} />
-                {/* <Route path='/new' exact component={NewQuestion} /> */}
+                <Route path='/new' exact 
+                  component={() => 
+                    <NewQuestion authedUser={this.props.authedUser}/>} 
+                />
              </div>
           }
         </Fragment>
