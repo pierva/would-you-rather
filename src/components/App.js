@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import { logoutUser } from '../actions/authedUser'
@@ -36,6 +36,12 @@ class App extends Component {
             <div>
               <Route path='/' exact component={Dashboard} />
               <Route path='/login' exact component={Login} />
+              <Route path='/new' exact component={() => 
+                <Redirect to='/login' />
+              }/>
+              <Route path='/leaderboard' exact component={() => 
+                  <Redirect to='/login' />
+              }/> 
             </div>
             :            
             <div>
@@ -44,6 +50,10 @@ class App extends Component {
                 <Route path='/new' exact 
                   component={() => 
                     <NewQuestion authedUser={this.props.authedUser}/>} 
+                />
+                <Route path='/leaderboard' exact component={() => 
+                  <LeaderBoard users={this.props.users}
+                  />} 
                 />
              </div>
           }
@@ -62,7 +72,8 @@ function mapStateToProps({ authedUser, users }) {
     loading: authedUser === null,
     authedUser,
     username: authedUser ? users[authedUser].name : null,
-    avatar: authedUser ? users[authedUser].avatarURL : null
+    avatar: authedUser ? users[authedUser].avatarURL : null,
+    users
   }
 }
 
