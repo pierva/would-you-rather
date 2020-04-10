@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/questions'
+
 
 class NewQuestion extends Component {
   state = {
-    optionOne: '',
-    optionTwo: ''
+    optionOneText: '',
+    optionTwoText: '',
+    returnHome: false
   }
 
   handleChange = (e) => {
@@ -16,34 +21,42 @@ class NewQuestion extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.props.authedUser, this.state);
-    
+    const {optionOneText, optionTwoText} = this.state
+    this.props.dispatch(handleAddQuestion({optionOneText, optionTwoText}))
+    this.setState(() => ({
+      optionOneText: '',
+      optionTwoText: '',
+      returnHome: true
+    }))
   }
 
   render () {
-    const { optionOne, optionTwo } = this.state    
+    const { optionOneText, optionTwoText, returnHome } = this.state 
+    if (returnHome === true ) {
+      return <Redirect to='/' />
+    }   
     return (
       <div>
         <h1>Would you Rather</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor = "optionOne">Option One</label>
+          <label htmlFor = "optionOneText">Option One</label>
           <input 
-            name="optionOne"
+            name="optionOneText"
             placeholder="option one text"
             onChange={this.handleChange}
-            value={optionOne}
+            value={optionOneText}
           />
           <hr />
-          <label htmlFor="optionTwo">Option One</label>
+          <label htmlFor="optionTwoText">Option One</label>
           <input
-            name="optionTwo"
+            name="optionTwoText"
             placeholder="option two text"
             onChange={this.handleChange}
-            value={optionTwo}
+            value={optionTwoText}
           />
           <button
             type="submit"
-            disabled={optionOne === "" || optionTwo === ""}
+            disabled={optionOneText === "" || optionTwoText === ""}
           >
             Add question
           </button>
@@ -55,4 +68,4 @@ class NewQuestion extends Component {
 }
 
 
-export default NewQuestion
+export default connect()(NewQuestion)

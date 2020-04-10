@@ -1,5 +1,6 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const UPDATE_USER_ANSWERS = 'UPDATE_USER_ANSWERS'
+export const UPDATE_USER_QUESTIONS = 'UPDATE_USER_QUESTIONS'
 
 export function receiveUsers (users) {
   return {
@@ -19,5 +20,19 @@ export function updateUserAnswers ({authedUser, id, answer}) {
     authedUser,
     id,
     answer
+  }
+}
+
+/**
+ * 
+ * @param {Object} data
+ * @param {string} data.authedUser authedUser id
+ * @param {string} data.id question id
+ */
+export function updateUserQuestions ({authedUser, id}) {
+  return {
+    type: UPDATE_USER_QUESTIONS,
+    authedUser,
+    id
   }
 }

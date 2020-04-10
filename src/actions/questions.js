@@ -1,6 +1,6 @@
-import { saveQuestionAnswer } from '../utils/api'
+import { saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { updateUserAnswers } from './users'
+import { updateUserAnswers, updateUserQuestions } from './users'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -22,6 +22,13 @@ function answerQuestion ({id, answer, authedUser}) {
   }
 }
 
+
+function addQuestion (question) {
+  return {
+    type: ADD_QUESTION,
+    question
+  }
+}
 
 /**
  * 
@@ -53,5 +60,38 @@ export function handleAnswerQuestion (id, answer) {
       answer
     }))
     return dispatch(hideLoading())
+  }
+}
+
+/**
+ * 
+ * @param {Object} qustion
+ * @param {string} question.optionOneText Option one answer
+ * @param {string} question.optionTwoText Option two answer
+ *
+ */
+export function handleAddQuestion(question) {
+  return async (dispatch, getState) => {
+    const { authedUser } = getState()
+    const {optionOneText, optionTwoText} = question
+    dispatch(showLoading())
+    try {
+      const newQuestion = await saveQuestion({
+        optionOneText,
+        optionTwoText,
+        author: authedUser
+      })
+      dispatch(addQuestion(newQuestion)) 
+      dispatch(updateUserQuestions({
+        authedUser,
+        id: newQuestion.id
+      }))
+      return dispatch(hideLoading())
+    }
+    catch (e) {
+      console.warn('Error in handleAddQuestion:', e)
+      dispatch(hideLoading())
+      return alert('Something went wrong while posting your question. Please try again')
+    }
   }
 }
