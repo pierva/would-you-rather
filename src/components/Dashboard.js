@@ -5,7 +5,7 @@ import QuestionsGroup from './QuestionsGroup'
 
 class Dashboard extends Component {
   state = {
-    answered: true
+    answered: false
   }
 
   toggleGroup = () => {
