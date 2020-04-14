@@ -1,13 +1,70 @@
+@import './style/theme';
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/* NAVBAR STYLE */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $primary-color;
+  border-top: 1px solid $primary-color;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: $navbar-height;
+}
+
+.navbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 0.75em;
+}
+
+.link {
+  padding: 0 0.75em;
+  margin: 0 0.25em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  line-height: $navbar-height;
+  transition: background-color 0.2s ease-in-out;
+  display: block;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.no-link {
+  font-weight: 600;
+  color: $primary-color;
+  margin-left: 1.5em;
+}
+
+.link:hover {
+  background-color: $primary-color;
+  color: white!important;
+}
+
+.active {
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 8px solid $primary-color;
+  line-height: 40px;
+}
+
+.navbar-item:last-child {
+  margin-left: auto;
 }

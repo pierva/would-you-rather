@@ -25,7 +25,7 @@ export default function Nav(props) {
       avatar: props.avatar
     },
     {
-      path: '/',
+      path: '#',
       text: 'LOGOUT',
       options: 
         {
@@ -49,22 +49,27 @@ export default function Nav(props) {
 
   return (
     <nav>
-      <ul>
+      <ul className="navbar">
         {props.authedUser ? 
         authLinks.map((link) => (
-          <li key={link.text}>
-            <NavLink to={link.path} exact activeClassName='active'
+          <li key={link.text} className="navbar-item">
+            <NavLink to={link.path} exact 
+              className={link.avatar ? 'no-link' : 'link'}
+              activeClassName={link.path === "#" ? '' : 'active'}
               onClick={link.options.clickHandler ? link.options.clickHandler : null}
             >
               {link.text}
             </NavLink>
-            {link.avatar ? <img src={link.avatar} alt="avatar"/> : ''}
+            {link.avatar ? <img className="navbar-avatar"
+              src={link.avatar} alt="avatar"/> : ''}
           </li>
           ))
         : 
         unauthLinks.map((link) => (
           <li key={link.text}>
-            <NavLink to={link.path} exact activeClassName='active'>
+            <NavLink to={link.path} exact 
+              className="link"
+              activeClassName='active'>
               {link.text}
             </NavLink>
           </li>
