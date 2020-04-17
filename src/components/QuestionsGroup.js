@@ -4,7 +4,7 @@ import Question from './Question'
 export default function QuestionsGroup(props) {
  
   return (
-    <ul>
+    <ul className='container'>
     {props.questionIds.map((id) => (
       <li key={id}>
         <Question id={id} />

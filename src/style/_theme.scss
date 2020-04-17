@@ -1,3 +1,42 @@
-$primary-color: #0909b1;
+$primary-color: rgb(36, 155, 235);
+$secondary-color: rgb(67, 77, 133);
+$contrast-color: white;
 $font-family: 'Montserrat', sans-serif !important;
 $navbar-height: 50px;
+$primary-grey: rgb(105, 105, 105);
+$secondary-grey: rgb(175, 175, 175);
+$warning: rgb(236, 102, 39);
+
+
+/* UTILITIES */
+$container-width: 750px;
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.8em;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1.1em;
+  font-weight: 600;
+}

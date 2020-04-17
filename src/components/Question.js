@@ -26,11 +26,11 @@ class Question extends Component {
 
     // If question exist, we can get the information we need 
     const {
-      name, avatar
+      name, avatar, optionOne
     } = question   
           
     return (
-      <div>
+      <div className="card">
         {this.state.openPoll 
         ? <div>
           < QuestionPoll 
@@ -41,9 +41,17 @@ class Question extends Component {
           </div>
         :
         <div>
-          <p>author: {name}</p>
-          <p>avatar: {avatar}</p>
-          <button onClick={this.togglePoll}>View Poll</button>
+          <h3 className='card-header'>{name} asks:</h3>
+          <div className="question-group">
+            <img className="avatar-big" src={avatar} alt="avatar" />
+            <div className="inner-group">
+              <h2 className="question-header">Would you rather:</h2>
+              <p>{optionOne.text}...</p>
+              <button 
+                className="btn btn-primary-outline"
+                onClick={this.togglePoll}>View Poll</button>
+            </div>
+          </div>
         </div>
         }   
       </div>

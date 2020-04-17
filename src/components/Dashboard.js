@@ -19,7 +19,9 @@ class Dashboard extends Component {
     if(!this.props.authedUser) {  
       return (
         <div>
-          <h2>Please login to partecipate to the poll</h2>
+          <h2 className="warning text-center p-1">
+            Please login to partecipate to the poll
+            </h2>
           <QuestionsGroup questionIds={this.props.allIds} />
         </div>
       )

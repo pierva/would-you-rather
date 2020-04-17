@@ -1,3 +1,4 @@
+@import './style/resets';
 @import './style/theme';
 
 body {
@@ -45,12 +46,14 @@ code {
   display: block;
   font-weight: 600;
   color: $primary-color;
+  white-space: nowrap;
 }
 
 .no-link {
   font-weight: 600;
   color: $primary-color;
   margin-left: 1.5em;
+  white-space: nowrap;
 }
 
 .link:hover {
@@ -67,4 +70,101 @@ code {
 
 .navbar-item:last-child {
   margin-left: auto;
+}
+
+/* End Navbar style*/
+
+/* Question style*/
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+.card {
+  margin: 1em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px 0px $primary-grey;
+}
+
+.card-header {
+  color: $primary-grey;
+  font-size: 1.3em;
+  border-bottom: 1px solid $warning;
+  margin: 0.25em;
+}
+
+.avatar-big {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 2em;
+}
+
+.question-group {
+  display: flex;
+  flex-wrap: nowrap;
+  color: $primary-grey;
+  padding: 0.75em 0;
+}
+
+.question-header {
+  font-size: 1.75em;
+  font-weight: 600;
+}
+
+.inner-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+  border-left: 3px solid $secondary-grey;
+  width: 100%;
+}
+
+.btn {
+  border: 1px solid;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+}
+
+.btn-primary-outline {
+  border-color: $primary-color;
+  color: $primary-color;
+  
+  &:hover {
+    background-color: $primary-color;
+    color: $contrast-color;
+  }
+}
+
+.btn-primary-outline:disabled {
+  border-color: $secondary-grey;
+  color: $secondary-grey;
+  background-color: transparent;
+  cursor: unset;
+}
+
+/* UTILITIES */
+.text-center {
+  text-align: center;
+}
+
+.warning {
+  color: $warning;
+}
+
+.p-1 {
+  padding: 1em;
+}
+
+.p-2 {
+  padding: 2em;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
 }
