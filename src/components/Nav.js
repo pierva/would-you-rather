@@ -52,7 +52,8 @@ export default function Nav(props) {
       <ul className="navbar">
         {props.authedUser ? 
         authLinks.map((link) => (
-          <li key={link.text} className="navbar-item">
+          <li key={link.text} 
+            className={link.avatar ? "navbar-item d-flex" : 'navbar-item'}>
             <NavLink to={link.path} exact 
               className={link.avatar ? 'no-link' : 'link'}
               activeClassName={link.path === "#" ? '' : 'active'}
