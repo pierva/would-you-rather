@@ -1,4 +1,4 @@
-import React, {Component } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PollResult from './PollResult'
 import { handleAnswerQuestion } from '../actions/questions'
@@ -27,55 +27,57 @@ class QuestionPoll extends Component {
     e.preventDefault()
     const { id } = this.props.question
     const { selectedOption } = this.state
-    if(!selectedOption) return alert('Please select an option')
+    if (!selectedOption) return alert('Please select an option')
     this.props.dispatch(handleAnswerQuestion(id, selectedOption))
   }
-  
-  render () {
+
+  render() {
     const { question } = this.props
-    if(this.props.authedUser && question.hasAnswered.value === false)
-    // Show the form to submit the answer
-    // TODO: after submitting, show Poll results
+    if (this.props.authedUser && question.hasAnswered.value === false)
+      // Show the form to submit the answer
+      // TODO: after submitting, show Poll results
       return (
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="">
-              <label>
-                <input
-                  type="radio"
-                  name={`"${question.id}"`}
-                  value="optionOne"
-                  className=""
-                  onChange={this.handleOptionChange}
-                />
-                {question.optionOne.text}
-              </label>
-            </div>
-  
-            <div className="">
-              <label>
-                <input
-                  type="radio"
-                  name={`"${question.id}"`}
-                  value="optionTwo"
-                  className=""
-                  onChange={this.handleOptionChange}
-                />
-                {question.optionTwo.text}
-              </label>
-            </div>
-            <div className="">
-              <button className="" type="submit">
-                Save
-              </button>
+          <form onSubmit={this.handleSubmit} className="form">
+            <h1 className="card-header">Would you rather</h1>
+            <div className="question-group">
+              <img className="avatar-big"
+                src={question.avatar} />
+              <div className="inner-group">
+                <label for="optionOne" className="input-group">
+                  {question.optionOne.text}
+                  <input
+                    type="radio"
+                    name={question.id}
+                    value="optionOne"
+                    className=""
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="checkmark"></span>
+                </label>
+                <label for="optionTwo" className="input-group">
+                  {question.optionTwo.text}
+                  <input
+                    type="radio"
+                    name={question.id}
+                    value="optionTwo"
+                    className=""
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="checkmark"></span>
+                </label>
+                <button className="btn btn-primary" type="submit">
+                  Save
+                </button>
+              </div>
             </div>
           </form>
         </div>
       )
-  
-      return (
-        < PollResult question={question}/>
-      )
+
+    return (
+      < PollResult question={question} />
+    )
   }
 }
 

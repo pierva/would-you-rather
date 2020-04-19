@@ -82,10 +82,11 @@ code {
 }
 
 .card {
-  margin: 1em;
+  margin: 2em 1em;
   padding: 0.5em;
   border-radius: 0.5em;
   box-shadow: 0 0 5px 0px $primary-grey;
+  position: relative;
 }
 
 .card-header {
@@ -128,6 +129,23 @@ code {
   border-radius: 0.5em;
   cursor: pointer;
   transition: background-color 0.2s ease-in;
+  padding: 0.25em 0.75em;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  color: $off-white;
+  
+  &:hover {
+    background-color: $primary-darker;
+    color: $contrast-color;
+  }
+}
+
+.btn-primary:disabled {
+  background-color: $secondary-grey;
+  color: $off-white;
+  cursor: unset;
 }
 
 .btn-primary-outline {
@@ -167,4 +185,97 @@ code {
 .d-flex {
   display: flex;
   align-items: center;
+}
+
+
+// Checkbox styling
+
+.input-group {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1.2em;
+  background-color: $off-white;
+  padding: 10px;
+}
+
+/* Hide the browser's default radio button */
+.input-group input {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    display: block;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 48px;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 28px;
+  width: 28px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.input-group:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.input-group input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.input-group input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.input-group .checkmark:after {
+ 	top: 10px;
+	left: 10px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.close-btn {
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  background: $danger;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  font-size: 1.2em;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 2px 2px $primary-grey;
+  }
 }

@@ -37,7 +37,9 @@ class Question extends Component {
             authedUser={this.props.authedUser} 
             question={this.props.question}
             />
-          <button onClick={this.togglePoll}>Close Poll</button>
+          <button onClick={this.togglePoll}
+            className="close-btn"
+          >&#8617;</button>
           </div>
         :
         <div>
