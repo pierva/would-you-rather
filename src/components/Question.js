@@ -43,7 +43,7 @@ class Question extends Component {
           </div>
         :
         <div>
-          <h3 className='card-header'>{name} asks:</h3>
+          <h2 className='card-header'>{name} asks:</h2>
           <div className="question-group">
             <img className="avatar-big" src={avatar} alt="avatar" />
             <div className="inner-group">
