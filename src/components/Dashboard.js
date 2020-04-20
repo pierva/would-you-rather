@@ -28,9 +28,11 @@ class Dashboard extends Component {
     }
     return (
       <div>
-        <button onClick={this.toggleGroup}>
-          {this.state.answered ? "Unanswered" : "Answered"}
+        <div className="container">
+        <button onClick={this.toggleGroup} className="card-top ">
+          {this.state.answered ? "Show Unanswered" : "Show Answered"}
         </button>
+        </div>
         {this.state.answered 
           ? <QuestionsGroup questionIds={this.props.answeredIds} />
           : <QuestionsGroup questionIds={this.props.notAnsweredIds} />

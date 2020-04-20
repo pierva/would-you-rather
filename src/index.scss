@@ -82,11 +82,33 @@ code {
 }
 
 .card {
-  margin: 2em 1em;
+  margin: 2em 0;
   padding: 0.5em;
   border-radius: 0.5em;
-  box-shadow: 0 0 5px 0px $primary-grey;
+  box-shadow: 0 0 4px 0px $primary-grey;
   position: relative;
+}
+
+.container > li:first-of-type {
+  margin-top: 0;
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+.card-top {
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 1px;
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: $secondary-grey;
+  padding: 0.5em;
+  box-shadow: 0 0 4px 0px $primary-grey;
+  cursor: pointer;
+  color: $off-white;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $primary-grey;
+  }
 }
 
 .card-header {

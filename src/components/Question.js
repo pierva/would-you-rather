@@ -30,7 +30,7 @@ class Question extends Component {
     } = question   
           
     return (
-      <div className="card">
+      <div>
         {this.state.openPoll 
         ? <div>
           < QuestionPoll 
