@@ -22,6 +22,7 @@ class Dashboard extends Component {
           <h2 className="warning text-center p-1">
             Please login to partecipate to the poll
             </h2>
+          <div className="card-top container p-1"></div>
           <QuestionsGroup questionIds={this.props.allIds} />
         </div>
       )
