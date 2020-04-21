@@ -89,10 +89,12 @@ code {
 .dropdown {
   border-color: $secondary-grey;
   color: $primary-grey;
-  font-size: 1.4em;
+  font-size: 1.2em;
   width: 100%;
   cursor: pointer;
+  padding: 0.25em;
   margin-bottom: 0.25em;
+  border-radius: 0.25em;
 }
 
 /* Question style*/
