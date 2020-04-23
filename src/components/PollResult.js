@@ -13,7 +13,7 @@ export default function PollResult(props) {
         Would you rather:
       </h2>
       <div className="question-group">
-        <img className="avatar-big" src={question.avatar} />
+        <img className="avatar-big" src={question.avatar} alt="avatar"/>
         <div className="inner-group">
         <div className={question.hasAnswered.option === "optionOne" 
                 ? 'option-selected' : ''}>

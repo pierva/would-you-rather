@@ -41,10 +41,10 @@ class QuestionPoll extends Component {
           <form onSubmit={this.handleSubmit} className="form">
             <h1 className="card-header">Would you rather</h1>
             <div className="question-group">
-              <img className="avatar-big"
+              <img className="avatar-big" alt="avatar"
                 src={question.avatar} />
               <div className="inner-group">
-                <label for="optionOne" className="input-group">
+                <label htmlFor="optionOne" className="input-group">
                   {question.optionOne.text}
                   <input
                     type="radio"
@@ -55,7 +55,7 @@ class QuestionPoll extends Component {
                   />
                   <span className="checkmark"></span>
                 </label>
-                <label for="optionTwo" className="input-group">
+                <label htmlFor="optionTwo" className="input-group">
                   {question.optionTwo.text}
                   <input
                     type="radio"
