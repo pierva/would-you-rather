@@ -32,23 +32,30 @@ class NewQuestion extends Component {
 
   render () {
     const { optionOneText, optionTwoText, returnHome } = this.state 
+    console.log(this.props.authedUser);
+    
     if (returnHome === true ) {
       return <Redirect to='/' />
     }   
     return (
-      <div>
-        <h1>Would you Rather</h1>
+      <div className="container p-2 card">
+        <h3 className="text-center">¿¿New question?? </h3>
+        <h1 className="text-center border-bottom">Would you Rather:</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor = "optionOneText">Option One</label>
+          <label htmlFor = "optionOneText" className="label">Option One</label>
           <input 
+            className="form-field"
             name="optionOneText"
             placeholder="option one text"
             onChange={this.handleChange}
             value={optionOneText}
           />
-          <hr />
-          <label htmlFor="optionTwoText">Option One</label>
+          <div className="text-center pt-1">
+            OR
+          </div>
+          <label htmlFor="optionTwoText" className="label">Option Two</label>
           <input
+            className="form-field"
             name="optionTwoText"
             placeholder="option two text"
             onChange={this.handleChange}
@@ -56,6 +63,7 @@ class NewQuestion extends Component {
           />
           <button
             type="submit"
+            className="btn btn-primary"
             disabled={optionOneText === "" || optionTwoText === ""}
           >
             Add question

@@ -105,7 +105,7 @@ code {
 }
 
 .card {
-  margin: 2em 0;
+  margin: 2em auto;
   padding: 0.5em;
   border-radius: 0.5em;
   box-shadow: 0 0 4px 0px $primary-grey;
@@ -115,6 +115,10 @@ code {
 .container > li:first-of-type {
   margin-top: 0;
   border-radius: 0 0 0.5em 0.5em;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $warning;
 }
 
 .card-top {
@@ -225,6 +229,10 @@ code {
 
 .p-2 {
   padding: 2em;
+}
+
+.pt-1 {
+  padding-top: 1em;
 }
 
 .pt-2 {
@@ -358,8 +366,6 @@ code {
   }
 }
 
-
-
 /* Score bar */
 .score-bar {
   position: relative;
@@ -376,6 +382,20 @@ code {
   height: 100%;
   border-radius: inherit;
   transition: width 1s ease-in;
+}
+
+.label {
+  display: block;
+  padding-top: 1em;
+}
+
+.form-field {
+  border: 1px solid $secondary-grey;
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  color: $primary-grey;
+  margin: 0.25em 0;
 }
 
 @media only screen and (max-width: 800px) {
