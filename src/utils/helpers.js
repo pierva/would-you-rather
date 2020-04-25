@@ -55,16 +55,20 @@ export function sortByScore (users) {
     const userBQ = users[b].questions.length
     const userBA = Object.keys(users[b].answers).length
     scores[users[a].id] = {
+      name: users[a].name,
       score: userAQ + userAA ,
       questions: userAQ,
       answers: userAA,
-      userId: users[a].id
+      userId: users[a].id,
+      avatar: users[a].avatarURL 
     }
     scores[users[b].id] = {
+      name: users[b].name,
       score: userBQ + userBA,
       questions: userBQ,
       answers: userBA,
-      userId: users[b].id
+      userId: users[b].id,
+      avatar: users[b].avatarURL 
     }
     return (userBQ + userBA) - (userAQ + userAA )
   })
