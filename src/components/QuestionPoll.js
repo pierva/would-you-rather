@@ -33,9 +33,8 @@ class QuestionPoll extends Component {
 
   render() {
     const { question } = this.props
-    if (this.props.authedUser && question.hasAnswered.value === false)
+    if (this.props.authedUser && question.hasAnswered.value === false) {
       // Show the form to submit the answer
-      // TODO: after submitting, show Poll results
       return (
         <div>
           <form onSubmit={this.handleSubmit} className="form">
@@ -74,7 +73,7 @@ class QuestionPoll extends Component {
           </form>
         </div>
       )
-
+      }
     return (
       < PollResult question={question} />
     )
