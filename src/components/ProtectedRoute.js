@@ -13,7 +13,10 @@ export default function ProtectedRoute({component: Component, ...rest}) {
     <Route {...rest} render={(props) => (
       rest.authedUser ?
         < Component { ...props } />
-        : <Redirect to='/login' />
+        : <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
     )} />
 
   )

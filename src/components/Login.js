@@ -7,7 +7,8 @@ import logo from '../style/logo.png'
 class Login extends Component {
   state = {
     userId: '',
-    redirectHome: false
+    // redirectHome: false,
+    redirectToReferrer: false
   }
   
   handleSubmit = (e) => {
@@ -20,7 +21,7 @@ class Login extends Component {
     dispatch(setAuthedUser(userId))
 
     this.setState(() => ({
-      redirectHome: true
+      redirectToReferrer: true
     }))
   }
 
@@ -28,14 +29,17 @@ class Login extends Component {
     const userId = e.target.value
     this.setState(() => ({
       userId: userId === 'none' ? '' : userId,
-      redirectHome: false
+      redirectToReferrer: false
     }))
   }
 
   render() {
     const { users } = this.props    
-    if (this.state.redirectHome) {
-      return <Redirect to='/' />
+    const { redirectToReferrer } = this.state
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    
+    if (redirectToReferrer === true ) {
+      return <Redirect to={from} />
     }
     return (
       <div className="login-container pt-2">
