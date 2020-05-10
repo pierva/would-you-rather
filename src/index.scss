@@ -503,8 +503,38 @@ code {
 }
 
 
+/*  ERROR PAGE STYLE */
+
+.error-container {
+  display: flex;
+  align-items: center;
+}
+
+.error-header {
+  font-size: 3em;
+  color: $primary-grey;
+  margin: 1em;
+}
+
+.error-number {
+  margin: 0.5em;
+  font-size: 5em;
+  font-weight: 600;
+}
+
+.error-info {
+  font-size: 2em;
+  color: $primary-grey;
+}
+
 @media only screen and (max-width: 800px) {
   .container {
     margin: 0 1.25em
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .error-container {
+    display: block
   }
 }

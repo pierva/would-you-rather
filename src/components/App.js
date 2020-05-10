@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import { logoutUser } from '../actions/authedUser'
@@ -11,6 +11,7 @@ import NewQuestion from '../components/NewQuestion'
 import LeaderBoard from '../components/LeaderBoard'
 import QuestionPoll from '../components/QuestionPoll'
 import ProtectedRoute from '../components/ProtectedRoute'
+import Error404 from '../components/Error404'
 
 class App extends Component {
 
@@ -32,7 +33,7 @@ class App extends Component {
               handleLogout={this.handleLogout}
               avatar={this.props.avatar}
           />
-            <div>
+            <Switch>
               <Route path='/' exact={true} component={Dashboard} />
               <Route path='/login' exact component={Login} />
               <ProtectedRoute path='/new' exact 
@@ -49,7 +50,10 @@ class App extends Component {
                   authedUser={this.props.authedUser}
                   component={QuestionPoll}
                 />
-            </div>
+                <ProtectedRoute
+                  authedUser={this.props.authedUser}
+                  component={Error404} />
+            </Switch>
         </Fragment>
       </Router>
     )
