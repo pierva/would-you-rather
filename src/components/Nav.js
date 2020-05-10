@@ -2,10 +2,15 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function Nav(props) {  
-  const authLinks = [
+  const unauthLinks = [
     {
       path: '/',
       text: 'Home',
+      options: {}
+    },
+    {
+      path: '/login',
+      text: 'LOGIN',
       options: {}
     },
     {
@@ -18,6 +23,10 @@ export default function Nav(props) {
       text: 'Leaderboard',
       options: {}
     },
+  ]
+
+  const authLinks = [
+    ...unauthLinks,
     {
       path: '#',
       text: `Welcome, ${props.authedUser}`,
@@ -34,18 +43,7 @@ export default function Nav(props) {
     }
   ]
 
-  const unauthLinks = [
-    {
-      path: '/',
-      text: 'Home',
-      options: {}
-    },
-    {
-      path: '/login',
-      text: 'LOGIN',
-      options: {}
-    }
-  ]
+  
 
   return (
     <nav>
