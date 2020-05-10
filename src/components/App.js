@@ -33,7 +33,7 @@ class App extends Component {
               avatar={this.props.avatar}
           />
             <div>
-              <Route path='/' exact component={Dashboard} />
+              <Route path='/' exact={true} component={Dashboard} />
               <Route path='/login' exact component={Login} />
               <ProtectedRoute path='/new' exact 
                   authedUser={this.props.authedUser}
