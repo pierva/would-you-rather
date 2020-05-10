@@ -10,7 +10,7 @@ import Dashboard from '../components/Dashboard'
 import NewQuestion from '../components/NewQuestion'
 import LeaderBoard from '../components/LeaderBoard'
 import QuestionPoll from '../components/QuestionPoll'
-
+import ProtectedRoute from '../components/ProtectedRoute'
 
 class App extends Component {
 
@@ -32,36 +32,24 @@ class App extends Component {
               handleLogout={this.handleLogout}
               avatar={this.props.avatar}
           />
-          {this.props.loading === true
-            ? 
             <div>
               <Route path='/' exact component={Dashboard} />
               <Route path='/login' exact component={Login} />
-              <Route path='/new' exact component={() => 
-                <Redirect to='/login' />
-              }/>
-              <Route path='/leaderboard' exact component={() => 
-                  <Redirect to='/login' />
-              }/> 
-              <Route path='/question/:id' exact component={() => 
-                  <Redirect to='/login' />
-              }/>
-            </div>
-            :            
-            <div>
-                <Route path='/' exact component={Dashboard} />
-                <Route path='/login' exact component={Login} />
-                <Route path='/new' exact 
+              <ProtectedRoute path='/new' exact 
+                  authedUser={this.props.authedUser}
                   component={() => 
                     <NewQuestion authedUser={this.props.authedUser}/>} 
                 />
-                <Route path='/question/:id' component={QuestionPoll} />
-                <Route path='/leaderboard' exact component={() => 
-                  <LeaderBoard users={this.props.users}
-                  />} 
+              <ProtectedRoute path='/leaderboard' exact 
+                  authedUser={this.props.authedUser}
+                  component={() => 
+                    <LeaderBoard users={this.props.users}/>} 
                 />
-             </div>
-          }
+                <ProtectedRoute path='/question/:id' exact 
+                  authedUser={this.props.authedUser}
+                  component={QuestionPoll}
+                />
+            </div>
         </Fragment>
       </Router>
     )
