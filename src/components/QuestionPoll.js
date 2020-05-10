@@ -35,6 +35,15 @@ class QuestionPoll extends Component {
 
   render() {
     const { question, authedUser } = this.props
+
+    if (!question) {
+      return (
+        <div className="container pt-2">
+          <h1>404</h1>
+          Invalid question id
+        </div>
+      )
+    }
     
     if (authedUser && question.hasAnswered.value === false) {
       // Show the form to submit the answer
@@ -87,11 +96,18 @@ class QuestionPoll extends Component {
 function mapStateToProps({ authedUser, users, questions}, props) {
   const { id } = props.match.params
   const question = questions[id]
-  return {
-    id,
-    authedUser,
-    question: formatQuestion(question, users[question.author], authedUser) 
+  if (!question) {
+    return {
+      id,
+      authedUser,
+      question
+    }
   }
+    return {
+        id,
+        authedUser,
+        question: formatQuestion(question, users[question.author], authedUser) 
+      }
 }
 
 export default connect(mapStateToProps)(QuestionPoll)
