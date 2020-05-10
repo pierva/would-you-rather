@@ -9,6 +9,7 @@ import Nav from '../components/Nav'
 import Dashboard from '../components/Dashboard'
 import NewQuestion from '../components/NewQuestion'
 import LeaderBoard from '../components/LeaderBoard'
+import QuestionPoll from '../components/QuestionPoll'
 
 
 class App extends Component {
@@ -42,6 +43,9 @@ class App extends Component {
               <Route path='/leaderboard' exact component={() => 
                   <Redirect to='/login' />
               }/> 
+              <Route path='/question/:id' exact component={() => 
+                  <Redirect to='/login' />
+              }/>
             </div>
             :            
             <div>
@@ -51,6 +55,7 @@ class App extends Component {
                   component={() => 
                     <NewQuestion authedUser={this.props.authedUser}/>} 
                 />
+                <Route path='/question/:id' component={QuestionPoll} />
                 <Route path='/leaderboard' exact component={() => 
                   <LeaderBoard users={this.props.users}
                   />} 

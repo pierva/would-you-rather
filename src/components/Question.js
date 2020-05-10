@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import QuestionPoll from './QuestionPoll'
+import { Link, withRouter } from 'react-router-dom'
+
 
 class Question extends Component {
   state = {
@@ -13,6 +14,12 @@ class Question extends Component {
       openPoll: !prevState.openPoll
     }))
   }
+
+  openTweet = (e, id) => {
+    e.preventDefault()
+    this.togglePoll()
+    this.props.history.push(`/question/${id}`)
+  }
   
 
   render() {
@@ -20,28 +27,19 @@ class Question extends Component {
     const { question } = this.props    
     if (question === null) {
       return (
-        <p>Question not found</p>
+        <div className="container pt-2">
+          <h1>Question not found</h1>
+        </div>
       )
     }
 
     // If question exist, we can get the information we need 
     const {
-      name, avatar, optionOne
+      id, name, avatar, optionOne
     } = question   
           
     return (
       <div>
-        {this.state.openPoll 
-        ? <div>
-          < QuestionPoll 
-            authedUser={this.props.authedUser} 
-            question={this.props.question}
-            />
-          <button onClick={this.togglePoll}
-            className="close-btn"
-          >&#8617;</button>
-          </div>
-        :
         <div>
           <h2 className='card-header'>{name} asks:</h2>
           <div className="question-group">
@@ -49,13 +47,13 @@ class Question extends Component {
             <div className="inner-group">
               <h2 className="question-header">Would you rather:</h2>
               <p>{optionOne.text}...</p>
-              <button 
-                className="btn btn-primary-outline"
-                onClick={this.togglePoll}>View Poll</button>
+              <Link to={`/question/${id}`}
+                className="btn btn-primary-outline text-center">
+                  View Poll
+              </Link>
             </div>
           </div>
-        </div>
-        }   
+        </div> 
       </div>
     )
   }
@@ -73,4 +71,4 @@ function mapStateToProps({users, questions, authedUser}, {id}) {
 }
 
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

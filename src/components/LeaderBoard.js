@@ -1,6 +1,5 @@
 import React from 'react'
 import { sortByScore } from '../utils/helpers'
-import { Redirect } from 'react-router-dom'
 import scoreFirst from '../style/first.png'
 import scoreSecond from '../style/second.png'
 import scoreThird from '../style/third.png'
@@ -8,7 +7,6 @@ import scoreThird from '../style/third.png'
 
 export default function Leaderboard(props) {
   const { users } = props
-  console.log(users);
 
   const sortedUsers = sortByScore(users) || []
   return (

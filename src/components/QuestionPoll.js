@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PollResult from './PollResult'
 import { handleAnswerQuestion } from '../actions/questions'
+import { formatQuestion } from '../utils/helpers'
+import { Link } from 'react-router-dom'
 
 class QuestionPoll extends Component {
   /**
@@ -32,12 +34,14 @@ class QuestionPoll extends Component {
   }
 
   render() {
-    const { question } = this.props
-    if (this.props.authedUser && question.hasAnswered.value === false) {
+    const { question, authedUser } = this.props
+    
+    if (authedUser && question.hasAnswered.value === false) {
       // Show the form to submit the answer
       return (
-        <div>
+        <div className='container pt-2'>
           <form onSubmit={this.handleSubmit} className="form">
+          <Link className="close-btn" to="/" exact>X</Link>
             <h1 className="card-header">Would you rather</h1>
             <div className="question-group">
               <img className="avatar-big" alt="avatar"
@@ -80,4 +84,14 @@ class QuestionPoll extends Component {
   }
 }
 
-export default connect()(QuestionPoll)
+function mapStateToProps({ authedUser, users, questions}, props) {
+  const { id } = props.match.params
+  const question = questions[id]
+  return {
+    id,
+    authedUser,
+    question: formatQuestion(question, users[question.author], authedUser) 
+  }
+}
+
+export default connect(mapStateToProps)(QuestionPoll)

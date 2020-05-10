@@ -322,11 +322,16 @@ code {
 	background: white;
 }
 
+.wrapper {
+  position: relative;
+}
+
 .close-btn {
   position: absolute;
   top: -1em;
   right: -1em;
   background: $danger;
+  text-align: center;
   border-radius: 50%;
   width: 2em;
   height: 2em;
@@ -391,6 +396,10 @@ code {
 .label {
   display: block;
   padding-top: 1em;
+}
+
+.form {
+  position: relative;
 }
 
 .form-field {
